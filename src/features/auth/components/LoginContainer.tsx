@@ -18,7 +18,7 @@ export const LoginContainer = () => {
         const result = await login();
 
         if (result.success) {
-            router.push('/estudiante/tareas');
+            router.push('/estudiante');
         }
     };
 

@@ -14,16 +14,17 @@ const config: Config = {
                 background: "var(--background)",
                 foreground: "var(--foreground)",
                 "primary": "#9947eb",
-                "background-light": "#f7f6f8",
+                "background-light": "#fefaff",
                 "background-dark": "#191121",
-                "pastel-pink": "#fce4ec",
-                "pastel-lavender": "#f3e5f5",
+                "pastel-pink": "#ffdef2",
+                "pastel-yellow": "#fff4cc",
+                "pastel-lavender": "#e8e1ff",
             },
             fontFamily: {
                 "display": ["var(--font-spline-sans)", "sans-serif"]
             },
             borderRadius: {
-                "DEFAULT": "1rem",
+                "DEFAULT": "1.5rem",
                 "lg": "2rem",
                 "xl": "3rem",
                 "full": "9999px"
