@@ -1,4 +1,3 @@
-import React from 'react';
 import { TaskListContainer } from '@/features/tareas/components/TaskListContainer';
 
 export const metadata = {
