@@ -64,6 +64,7 @@ export const StudentDashboardContainer = () => {
                         iconContainerClassName="bg-white dark:bg-slate-700"
                         iconClassName="text-blue-400"
                         titleClassName="text-blue-600 dark:text-blue-200"
+                        onClick={() => router.push('/estudiante/notas')}
                     />
                 </div>
 

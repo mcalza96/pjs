@@ -14,16 +14,19 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                 </div>
 
                 <nav className="flex-1 flex flex-col gap-6">
-                    <Link className="text-primary hover:scale-110 transition-transform" href="/estudiante">
+                    <Link className="text-primary hover:scale-110 transition-transform" href="/estudiante" title="Dashboard">
                         <span className="material-symbols-outlined text-3xl">grid_view</span>
                     </Link>
-                    <Link className="text-primary/60 hover:text-primary transition-colors" href="#">
+                    <Link className="text-primary/60 hover:text-primary transition-colors" href="/estudiante/curso" title="Curso">
                         <span className="material-symbols-outlined text-3xl">brush</span>
                     </Link>
-                    <Link className="text-primary/60 hover:text-primary transition-colors" href="/estudiante/tareas">
+                    <Link className="text-primary/60 hover:text-primary transition-colors" href="/estudiante/tareas" title="Tareas">
                         <span className="material-symbols-outlined text-3xl">auto_stories</span>
                     </Link>
-                    <Link className="text-primary/60 hover:text-primary transition-colors" href="#">
+                    <Link className="text-primary/60 hover:text-primary transition-colors" href="/estudiante/notas" title="Notas">
+                        <span className="material-symbols-outlined text-3xl">sticky_note_2</span>
+                    </Link>
+                    <Link className="text-primary/60 hover:text-primary transition-colors" href="#" title="Mensajes">
                         <span className="material-symbols-outlined text-3xl">forum</span>
                     </Link>
                 </nav>
