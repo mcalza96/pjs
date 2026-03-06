@@ -2,6 +2,7 @@ export type ContenidoType = 'Objetivo' | 'Contenido' | 'Material' | 'Tarea';
 
 export interface Contenido {
     type: ContenidoType;
+    title?: string;
     text: string;
 }
 

@@ -17,8 +17,9 @@ const MOCK_CLASSES: Clase[] = [
         videoThumb: 'https://lh3.googleusercontent.com/aida-public/AB6AXuA_Fx0i4ppC7zPxMdSNFkrIERl8RakojSHGu5Gv4MRv8fLKA5UVfS6ep1_oy-4xD7KMSSA1c2t2NHZPC52tLQE6VUTh78vgkJT9Az8PYnaJgktm3W8CEwuuaiKHHF9mms1YDm-W1YJ8C11DPdDXvrG3Bd0sKxqZhig6zPOYIV7F8yjOa5KmMkQBXlX-aRtjtUcxG8WVGsNtTsK0ExPOAPtmLUYnBKQS_cC9Gn_C-QiftbJlnDTQuKuVDyoZn0nzav3z5nwZGhq_S3Q',
         contenidos: [
             { type: 'Objetivo', text: 'Conocer la interfaz a fondo.' },
-            { type: 'Contenido', text: 'Aprenderemos a crear lienzos, navegar por la galería, comprender los menús principales y el panel de ajustes rápidos.' },
-            { type: 'Material', text: 'Descargar paleta pastel.swatches' },
+            { type: 'Contenido', title: 'Fundamentos de la Interfaz', text: 'Aprenderemos a crear lienzos, navegar por la galería, comprender los menús principales y el panel de ajustes rápidos.' },
+            { type: 'Material', text: 'Pinceles base' },
+            { type: 'Material', text: 'Paleta de colores' },
             { type: 'Tarea', text: 'Dibujar un personaje simple usando solo 3 colores' }
         ]
     },
@@ -55,8 +56,8 @@ const MOCK_CLASSES: Clase[] = [
 ];
 
 export const CourseContainer = () => {
-    const [selectedClassId, setSelectedClassId] = useState<number>(1);
-    const selectedClass = MOCK_CLASSES.find(c => c.id === selectedClassId) || null;
+    const [selectedClassId, setSelectedClassId] = useState<number | null>(null);
+    const selectedClass = selectedClassId ? (MOCK_CLASSES.find(c => c.id === selectedClassId) || null) : null;
 
     const handleSubirTarea = () => {
         alert(`Preparando modal para subir tarea de la clase ${selectedClassId}`);
@@ -74,7 +75,7 @@ export const CourseContainer = () => {
                             key={clase.id}
                             clase={clase}
                             isSelected={selectedClassId === clase.id}
-                            onSelect={() => clase.isAvailable && setSelectedClassId(clase.id)}
+                            onSelect={() => clase.isAvailable && setSelectedClassId(selectedClassId === clase.id ? null : clase.id)}
                         />
                     ))}
                 </div>

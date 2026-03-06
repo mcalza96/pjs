@@ -34,7 +34,7 @@ const renderContenido = (item: Contenido, index: number) => {
             <div key={index} className="flex items-start gap-3 p-3 bg-white/60 rounded-xl">
                 <span className="text-xl mt-1">{icon}</span>
                 <div>
-                    <p className="text-sm font-bold text-slate-700">Contenido de la clase:</p>
+                    <p className="text-sm font-bold text-slate-700">{item.title || 'Contenido de la clase:'}</p>
                     <p className="text-sm text-slate-600 line-clamp-3 mt-1">{item.text}</p>
                 </div>
             </div>
@@ -64,8 +64,8 @@ const renderContenido = (item: Contenido, index: number) => {
                     <p className="text-sm font-medium text-amber-700"><span className="font-bold">Tarea:</span> {item.text}</p>
                 </div>
                 <button className="flex items-center justify-center gap-1 bg-white hover:bg-slate-50 text-amber-600 border border-amber-200 px-4 py-2 rounded-full text-xs font-bold transition-colors shadow-sm">
-                    <span className="material-symbols-outlined text-[16px]">assignment</span>
-                    Rúbrica
+                    <span className="material-symbols-outlined text-[16px]">arrow_forward</span>
+                    Ir a la tarea
                 </button>
             </div>
         );

@@ -10,7 +10,12 @@ export const ClassDetailsSidebar: React.FC<ClassDetailsSidebarProps> = ({ clase,
     if (!clase) {
         return (
             <aside className="w-80 flex-shrink-0 bg-white border-l border-primary/10 flex flex-col p-8 gap-8 justify-center items-center">
-                <p className="text-slate-400 text-center">Selecciona una clase para ver sus detalles.</p>
+                <div className="size-24 rounded-full bg-pastel-lavender/30 flex items-center justify-center mb-4">
+                    <span className="material-symbols-outlined text-6xl text-primary/40 blur-[1px]">brush</span>
+                </div>
+                <p className="text-slate-500 text-center font-medium leading-relaxed">
+                    ¡Selecciona una clase para comenzar a crear! ✨
+                </p>
             </aside>
         );
     }
