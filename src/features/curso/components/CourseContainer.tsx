@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { CourseHeader } from './ui/CourseHeader';
 import { ClassAccordionItem } from './ui/ClassAccordionItem';
-import { ClassDetailsSidebar } from './ui/ClassDetailsSidebar';
+import { TaskDetailModal } from './ui/TaskDetailModal';
 import { Clase } from '../types';
 
 const MOCK_CLASSES: Clase[] = [
@@ -57,10 +57,11 @@ const MOCK_CLASSES: Clase[] = [
 
 export const CourseContainer = () => {
     const [selectedClassId, setSelectedClassId] = useState<number | null>(null);
-    const selectedClass = selectedClassId ? (MOCK_CLASSES.find(c => c.id === selectedClassId) || null) : null;
+    const [isTaskModalOpen, setIsTaskModalOpen] = useState(false);
 
     const handleSubirTarea = () => {
-        alert(`Preparando modal para subir tarea de la clase ${selectedClassId}`);
+        alert('Subiendo tarea');
+        setIsTaskModalOpen(false);
     };
 
     return (
@@ -76,15 +77,19 @@ export const CourseContainer = () => {
                             clase={clase}
                             isSelected={selectedClassId === clase.id}
                             onSelect={() => clase.isAvailable && setSelectedClassId(selectedClassId === clase.id ? null : clase.id)}
+                            onOpenTask={() => setIsTaskModalOpen(true)}
                         />
                     ))}
                 </div>
             </main>
 
-            {/* Right Sidebar */}
-            <ClassDetailsSidebar
-                clase={selectedClass}
-                onSubirTarea={handleSubirTarea}
+            {/* Task Detail Modal */}
+            <TaskDetailModal
+                isOpen={isTaskModalOpen}
+                onClose={() => setIsTaskModalOpen(false)}
+                taskName="Tarea 1"
+                taskSubtitle="Dibujar un personaje simple"
+                onSubmit={handleSubirTarea}
             />
         </div>
     );

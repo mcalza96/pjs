@@ -5,6 +5,7 @@ interface ClassAccordionItemProps {
     clase: Clase;
     isSelected?: boolean;
     onSelect?: () => void;
+    onOpenTask?: () => void;
 }
 
 const getIconForType = (type: string) => {
@@ -17,7 +18,7 @@ const getIconForType = (type: string) => {
     }
 };
 
-const renderContenido = (item: Contenido, index: number) => {
+const renderContenido = (item: Contenido, index: number, onOpenTask?: () => void) => {
     const icon = getIconForType(item.type);
 
     if (item.type === 'Objetivo') {
@@ -63,7 +64,7 @@ const renderContenido = (item: Contenido, index: number) => {
                     <span className="text-xl">{icon}</span>
                     <p className="text-sm font-medium text-amber-700"><span className="font-bold">Tarea:</span> {item.text}</p>
                 </div>
-                <button className="flex items-center justify-center gap-1 bg-white hover:bg-slate-50 text-amber-600 border border-amber-200 px-4 py-2 rounded-full text-xs font-bold transition-colors shadow-sm">
+                <button onClick={onOpenTask} className="flex items-center justify-center gap-1 bg-white hover:bg-slate-50 text-amber-600 border border-amber-200 px-4 py-2 rounded-full text-xs font-bold transition-colors shadow-sm">
                     <span className="material-symbols-outlined text-[16px]">arrow_forward</span>
                     Ir a la tarea
                 </button>
@@ -74,7 +75,7 @@ const renderContenido = (item: Contenido, index: number) => {
     return null;
 };
 
-export const ClassAccordionItem: React.FC<ClassAccordionItemProps> = ({ clase, isSelected, onSelect }) => {
+export const ClassAccordionItem: React.FC<ClassAccordionItemProps> = ({ clase, isSelected, onSelect, onOpenTask }) => {
     if (!clase.isAvailable) {
         return (
             <details className="group bg-white border-2 border-pastel-lavender rounded-full overflow-hidden hover:border-primary/40 transition-colors">
@@ -114,7 +115,7 @@ export const ClassAccordionItem: React.FC<ClassAccordionItemProps> = ({ clase, i
             {isSelected && (
                 <div className="px-6 pb-8 space-y-4">
                     <div className="grid grid-cols-1 gap-3">
-                        {clase.contenidos.map((contenido, idx) => renderContenido(contenido, idx))}
+                        {clase.contenidos.map((contenido, idx) => renderContenido(contenido, idx, onOpenTask))}
                     </div>
                 </div>
             )}
