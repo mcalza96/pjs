@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import { useRouter } from 'next/navigation';
 import { WelcomeBanner } from './ui/WelcomeBanner';
 import { MiniCalendarWidget } from './ui/MiniCalendarWidget';
 import { QuickActionButton } from './ui/QuickActionButton';
@@ -9,6 +10,7 @@ import { MessagesCard } from './ui/MessagesCard';
 import { CircularProgressCard } from './ui/CircularProgressCard';
 
 export const StudentDashboardContainer = () => {
+    const router = useRouter();
     // Hardcoded mock data por ahora (En el futuro provendrá de un hook como useStudentDashboard)
     const studentInfo = {
         name: 'Leo',
@@ -53,6 +55,7 @@ export const StudentDashboardContainer = () => {
                         iconContainerClassName="bg-white dark:bg-slate-700"
                         iconClassName="text-primary"
                         titleClassName="text-primary dark:text-indigo-200"
+                        onClick={() => router.push('/estudiante/curso')}
                     />
                     <QuickActionButton
                         icon="sticky_note_2"
