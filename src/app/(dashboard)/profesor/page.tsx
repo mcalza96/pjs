@@ -1,6 +1,5 @@
-import React from 'react';
-import { TeacherDashboardContainer } from '@/features/dashboard-profesor/components/TeacherDashboardContainer';
+import { redirect } from 'next/navigation';
 
 export default function TeacherDashboardPage() {
-    return <TeacherDashboardContainer />;
+    redirect('/profesor/mis-cursos');
 }
