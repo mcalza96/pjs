@@ -44,13 +44,13 @@ export const TeacherDashboardContainer = () => {
                                 onClick={() => router.push('/profesor/curso')}
                             />
                             <QuickActionButton
-                                icon="sticky_note_2"
-                                title="Notas"
+                                icon="group"
+                                title="Mis Estudiantes"
                                 containerClassName="bg-blue-50 hover:bg-blue-100 transition-colors dark:bg-blue-900/30"
                                 iconContainerClassName="bg-white dark:bg-slate-700"
                                 iconClassName="text-blue-400"
                                 titleClassName="text-blue-600 dark:text-blue-200"
-                                onClick={() => router.push('/profesor/notas')}
+                                onClick={() => router.push('/profesor/estudiantes')}
                             />
                         </div>
 
