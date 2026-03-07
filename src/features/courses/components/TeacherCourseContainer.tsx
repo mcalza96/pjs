@@ -1,9 +1,9 @@
 'use client';
 
 import React, { useState } from 'react';
-import { CourseHeader } from '@/features/curso/components/ui/CourseHeader';
-import { EditableClassAccordionItem } from './EditableClassAccordionItem';
-import { Clase } from '@/features/curso/types';
+import { CourseHeader } from '@/features/courses/components/ui/CourseHeader';
+import { ClassAccordionItem } from '@/features/courses/components/ui/ClassAccordionItem';
+import { Clase } from '@/features/courses/types';
 
 const MOCK_CLASSES: Clase[] = [
     {
@@ -45,9 +45,10 @@ export const TeacherCourseContainer = () => {
 
                 <div className="space-y-6 max-w-3xl pb-10">
                     {MOCK_CLASSES.map((clase) => (
-                        <EditableClassAccordionItem
+                        <ClassAccordionItem
                             key={clase.id}
                             clase={clase}
+                            isEditable={true}
                             isSelected={selectedClassId === clase.id}
                             onSelect={() => setSelectedClassId(selectedClassId === clase.id ? null : clase.id)}
                             onEdit={() => alert(`Editando Clase: ${clase.title}`)}

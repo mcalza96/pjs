@@ -1,5 +1,5 @@
 import React from 'react';
-import { NotasContainer } from '@/features/notas/components/NotasContainer';
+import { NotasContainer } from '@/features/evaluations/components/NotasContainer';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {

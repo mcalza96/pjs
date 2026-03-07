@@ -1,9 +1,9 @@
 'use client';
 
 import React, { useState } from 'react';
-import { NotasHeader } from '@/features/notas/components/ui/NotasHeader';
-import { EditableEvaluacionAccordionItem } from './EditableEvaluacionAccordionItem';
-import { EvaluacionTarea } from '@/features/notas/types';
+import { NotasHeader } from '@/features/evaluations/components/ui/NotasHeader';
+import { EvaluacionAccordionItem } from '@/features/evaluations/components/ui/EvaluacionAccordionItem';
+import { EvaluacionTarea } from '@/features/evaluations/types';
 
 const MOCK_NOTAS: EvaluacionTarea[] = [
     {
@@ -55,9 +55,10 @@ export const TeacherNotasContainer = () => {
 
                 <div className="space-y-6 pb-12">
                     {MOCK_NOTAS.map((evaluacion) => (
-                        <EditableEvaluacionAccordionItem
+                        <EvaluacionAccordionItem
                             key={evaluacion.id}
                             evaluacion={evaluacion}
+                            isEditable={true}
                             isExpanded={expandedId === evaluacion.id}
                             onToggle={() => setExpandedId(expandedId === evaluacion.id ? null : evaluacion.id)}
                         />

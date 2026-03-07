@@ -6,10 +6,16 @@ import { RubricCriterion } from './RubricCriterion';
 interface EvaluacionAccordionItemProps {
     evaluacion: EvaluacionTarea;
     isExpanded: boolean;
+    isEditable?: boolean;
     onToggle: () => void;
 }
 
-export const EvaluacionAccordionItem: React.FC<EvaluacionAccordionItemProps> = ({ evaluacion, isExpanded, onToggle }) => {
+export const EvaluacionAccordionItem: React.FC<EvaluacionAccordionItemProps> = ({
+    evaluacion,
+    isExpanded,
+    isEditable = false,
+    onToggle
+}) => {
     return (
         <details
             className={`group bg-white border-2 ${isExpanded ? 'border-primary shadow-lg shadow-primary/10' : 'border-pastel-lavender/50 hover:border-primary/40'} rounded-[2rem] overflow-hidden transition-all duration-300`}
@@ -26,7 +32,9 @@ export const EvaluacionAccordionItem: React.FC<EvaluacionAccordionItemProps> = (
                     </div>
                     <div className="flex flex-col">
                         <h3 className="text-xl font-bold text-slate-800">{evaluacion.tituloTarea}</h3>
-                        <p className="text-slate-500 text-sm font-medium">Calificado por {evaluacion.profesor.nombre}</p>
+                        <p className="text-slate-500 text-sm font-medium">
+                            {isEditable ? 'Estudiante pendiente a evaluar' : `Calificado por ${evaluacion.profesor.nombre}`}
+                        </p>
                     </div>
                 </div>
 
@@ -43,7 +51,7 @@ export const EvaluacionAccordionItem: React.FC<EvaluacionAccordionItemProps> = (
             </summary>
 
             {isExpanded && (
-                <div className="px-6 pb-8 pt-2 bg-slate-50/50">
+                <div className="px-6 pb-8 pt-2 bg-slate-50/50" onClick={(e) => isEditable && e.stopPropagation()}>
                     {/* Header para mobile de la nota */}
                     <div className="sm:hidden mb-6 flex justify-center">
                         <div className={`px-8 py-3 rounded-full ${evaluacion.puntajeTotal >= 80 ? 'bg-green-100 text-green-700' : 'bg-amber-100 text-amber-700'} font-bold text-lg shadow-sm w-full text-center`}>
@@ -51,18 +59,40 @@ export const EvaluacionAccordionItem: React.FC<EvaluacionAccordionItemProps> = (
                         </div>
                     </div>
 
-                    <FeedbackProfesor
-                        nombre={evaluacion.profesor.nombre}
-                        avatar={evaluacion.profesor.avatar}
-                        comentario={evaluacion.feedbackGeneral}
-                    />
+                    {!isEditable && (
+                        <FeedbackProfesor
+                            nombre={evaluacion.profesor.nombre}
+                            avatar={evaluacion.profesor.avatar}
+                            comentario={evaluacion.feedbackGeneral}
+                        />
+                    )}
 
-                    <div className="flex flex-col gap-5 mt-8">
-                        <h2 className="text-xl font-bold text-slate-800 ml-2">Detalle de Rúbrica</h2>
+                    <div className={`flex flex-col gap-5 ${isEditable ? 'mt-4' : 'mt-8'}`}>
+                        <h2 className="text-xl font-bold text-slate-800 ml-2">
+                            Detalle de Rúbrica {isEditable && '(Editable)'}
+                        </h2>
                         {evaluacion.criterios.map((criterio) => (
-                            <RubricCriterion key={criterio.id} criterio={criterio} />
+                            <RubricCriterion
+                                key={criterio.id}
+                                criterio={criterio}
+                                isEditable={isEditable}
+                            />
                         ))}
                     </div>
+
+                    {isEditable && (
+                        <div className="mt-8 flex flex-col gap-4">
+                            <textarea
+                                className="w-full text-slate-700 bg-white p-4 rounded-xl border-2 border-primary/20 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 min-h-[120px] transition-all shadow-sm"
+                                placeholder="Escribe el feedback general para el estudiante..."
+                                defaultValue={evaluacion.feedbackGeneral}
+                            />
+                            <button className="flex items-center justify-center gap-2 bg-primary hover:bg-primary/90 text-white font-bold py-4 px-6 rounded-full w-full transition-all shadow-md mt-2">
+                                <span className="material-symbols-outlined">save</span>
+                                Guardar Evaluación
+                            </button>
+                        </div>
+                    )}
                 </div>
             )}
         </details>

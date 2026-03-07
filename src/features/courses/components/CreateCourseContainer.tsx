@@ -11,7 +11,7 @@ export const CreateCourseContainer = () => {
     const [error, setError] = useState<string | null>(null);
     const [titulo, setTitulo] = useState('');
     const [descripcion, setDescripcion] = useState('');
-    const [fechaInicio] = useState('');
+    const [fechaInicio, setFechaInicio] = useState('');
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -47,7 +47,7 @@ export const CreateCourseContainer = () => {
             fechaInicio={fechaInicio}
             onTituloChange={(e) => setTitulo(e.target.value)}
             onDescripcionChange={(e) => setDescripcion(e.target.value)}
-            onFechaInicioChange={(e) => fechaInicio(e.target.value)}
+            onFechaInicioChange={(e) => setFechaInicio(e.target.value)}
             error={error}
             onBack={handleBack}
         />

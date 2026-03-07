@@ -1,5 +1,5 @@
 import React from 'react';
-import { TeacherClasesContainer } from '@/features/clases-profesor/components/TeacherClasesContainer';
+import { TeacherClasesContainer } from '@/features/courses/components/TeacherClasesContainer';
 
 export default function TeacherClasesPage() {
     return <TeacherClasesContainer />;

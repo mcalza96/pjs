@@ -1,5 +1,5 @@
 import React from 'react';
-import { StudentsDirectoryContainer } from '@/features/estudiantes-profesor/components/StudentsDirectoryContainer';
+import { StudentsDirectoryContainer } from '@/features/users/components/StudentsDirectoryContainer';
 
 export default function MisEstudiantesPage() {
     return <StudentsDirectoryContainer />;

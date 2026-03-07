@@ -1,5 +1,5 @@
 import React from 'react';
-import { CourseContainer } from '@/features/curso/components/CourseContainer';
+import { CourseContainer } from '@/features/courses/components/CourseContainer';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {

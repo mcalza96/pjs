@@ -1,5 +1,5 @@
 import React from 'react';
-import { StudentManagementContainer } from '@/features/estudiantes-profesor/components/StudentManagementContainer';
+import { StudentManagementContainer } from '@/features/users/components/StudentManagementContainer';
 
 type Props = {
     params: {
