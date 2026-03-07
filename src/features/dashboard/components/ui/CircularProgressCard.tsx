@@ -34,8 +34,8 @@ export const CircularProgressCard: React.FC<CircularProgressCardProps> = ({
 
                 <div className="relative size-24">
                     <svg className="size-full -rotate-90" viewBox="0 0 36 36">
-                        <circle className={circleBaseClass} cx="18" cy="18" fill="none" r="16" strokeWidth="3"></circle>
-                        <circle className={circleProgressClass} cx="18" cy="18" fill="none" r="16" strokeDasharray={`${percentage}, 100`} strokeLinecap="round" strokeWidth="3"></circle>
+                        <circle className={circleBaseClass} cx="18" cy="18" fill="none" r="16" strokeWidth="3" pathLength="100"></circle>
+                        <circle className={circleProgressClass} cx="18" cy="18" fill="none" r="16" strokeDasharray={`${percentage} 100`} strokeLinecap="round" strokeWidth="3" pathLength="100"></circle>
                     </svg>
                     <div className="absolute inset-0 flex flex-col items-center justify-center">
                         <span className={`text-sm font-bold ${valueColorClass}`}>{value}</span>
