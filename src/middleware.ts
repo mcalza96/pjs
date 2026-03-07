@@ -14,13 +14,13 @@ export async function middleware(request: NextRequest) {
                 getAll() {
                     return request.cookies.getAll()
                 },
-                setAll(cookiesToSet) {
+                setAll(cookiesToSet: { name: string; value: string; options: any }[]) {
                     cookiesToSet.forEach(({ name, value }) => request.cookies.set(name, value))
                     supabaseResponse = NextResponse.next({
                         request,
                     })
-                    cookiesToSet.forEach(({ name, value }) =>
-                        supabaseResponse.cookies.set(name, value)
+                    cookiesToSet.forEach(({ name, value, options }) =>
+                        supabaseResponse.cookies.set(name, value, options)
                     )
                 },
             },
@@ -34,6 +34,26 @@ export async function middleware(request: NextRequest) {
 
     const url = request.nextUrl.clone()
 
+    // Redirección para rutas login/registro si ya está autenticado
+    const authPaths = ['/login', '/registro']
+    const isAuthPath = authPaths.some((path) =>
+        request.nextUrl.pathname.startsWith(path)
+    )
+
+    if (isAuthPath && user) {
+        // Consultar el rol para redirigir al dashboard correcto
+        const { data: profile } = await supabase
+            .from('perfiles')
+            .select('rol')
+            .eq('id', user.id)
+            .single()
+
+        if (profile) {
+            url.pathname = `/${profile.rol}`
+            return NextResponse.redirect(url)
+        }
+    }
+
     // Protección de rutas protegidas
     const protectedPaths = ['/estudiante', '/profesor', '/padre']
     const isProtectedPath = protectedPaths.some((path) =>
@@ -44,10 +64,6 @@ export async function middleware(request: NextRequest) {
         url.pathname = '/login'
         return NextResponse.redirect(url)
     }
-
-    // Redirección basada en el rol (opcional, pero recomendada)
-    // Aquí podrías consultar el perfil en la base de datos para asegurar que el rol coincide con la ruta
-    // Por ahora solo aseguramos que el usuario esté autenticado en las rutas protegidas
 
     return supabaseResponse
 }

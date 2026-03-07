@@ -1,17 +1,14 @@
 'use client';
 
 import React, { useState } from 'react';
-import { useRouter } from 'next/navigation';
-import { LoginView } from '@/components/ui/auth/LoginView';
-import { loginAction } from '../actions/auth';
+import { ForgotPasswordView } from '@/components/ui/auth/ForgotPasswordView';
+import { forgotPasswordAction } from '../actions/forgot-password';
 
-export const LoginContainer = () => {
+export const ForgotPasswordContainer = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
-
+    const [success, setSuccess] = useState(false);
     const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [remember, setRemember] = useState(false);
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -20,28 +17,26 @@ export const LoginContainer = () => {
 
         const formData = new FormData();
         formData.append('email', email);
-        formData.append('password', password);
 
-        const result = await loginAction(formData);
+        const result = await forgotPasswordAction(formData);
 
         if (result?.error) {
             setError(result.error);
             setIsLoading(false);
+        } else {
+            setSuccess(true);
+            setIsLoading(false);
         }
-        // Redirect es manejado por el Server Action si es exitoso
     };
 
     return (
-        <LoginView
+        <ForgotPasswordView
             onSubmit={handleSubmit}
             isLoading={isLoading}
             email={email}
-            password={password}
-            remember={remember}
             onEmailChange={(e) => setEmail(e.target.value)}
-            onPasswordChange={(e) => setPassword(e.target.value)}
-            onRememberChange={(e) => setRemember(e.target.checked)}
             error={error}
+            success={success}
         />
     );
 };

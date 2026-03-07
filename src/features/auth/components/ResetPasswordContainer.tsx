@@ -1,17 +1,14 @@
 'use client';
 
 import React, { useState } from 'react';
-import { useRouter } from 'next/navigation';
-import { LoginView } from '@/components/ui/auth/LoginView';
-import { loginAction } from '../actions/auth';
+import { ResetPasswordView } from '@/components/ui/auth/ResetPasswordView';
+import { resetPasswordAction } from '../actions/reset-password';
 
-export const LoginContainer = () => {
+export const ResetPasswordContainer = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
-
-    const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [remember, setRemember] = useState(false);
+    const [confirmPassword, setConfirmPassword] = useState('');
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -19,28 +16,25 @@ export const LoginContainer = () => {
         setError(null);
 
         const formData = new FormData();
-        formData.append('email', email);
         formData.append('password', password);
+        formData.append('confirmPassword', confirmPassword);
 
-        const result = await loginAction(formData);
+        const result = await resetPasswordAction(formData);
 
         if (result?.error) {
             setError(result.error);
             setIsLoading(false);
         }
-        // Redirect es manejado por el Server Action si es exitoso
     };
 
     return (
-        <LoginView
+        <ResetPasswordView
             onSubmit={handleSubmit}
             isLoading={isLoading}
-            email={email}
             password={password}
-            remember={remember}
-            onEmailChange={(e) => setEmail(e.target.value)}
+            confirmPassword={confirmPassword}
             onPasswordChange={(e) => setPassword(e.target.value)}
-            onRememberChange={(e) => setRemember(e.target.checked)}
+            onConfirmPasswordChange={(e) => setConfirmPassword(e.target.value)}
             error={error}
         />
     );

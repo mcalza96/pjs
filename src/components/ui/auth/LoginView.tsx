@@ -70,7 +70,7 @@ export const LoginView: React.FC<LoginViewProps> = ({
                     <div className="space-y-2">
                         <div className="flex justify-between items-center px-1">
                             <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300">Contraseña</label>
-                            <a className="text-xs font-medium text-primary hover:underline" href="#">¿Olvidaste tu contraseña?</a>
+                            <a className="text-xs font-medium text-primary hover:underline" href="/olvido-password">¿Olvidaste tu contraseña?</a>
                         </div>
                         <div className="relative">
                             <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
@@ -116,7 +116,7 @@ export const LoginView: React.FC<LoginViewProps> = ({
                 {/* Footer Section */}
                 <div className="mt-8 text-center">
                     <p className="text-sm text-slate-500 dark:text-slate-400">
-                        ¿No tienes cuenta? <a className="text-primary font-bold hover:underline" href="#">Únete a la academia</a>
+                        ¿No tienes cuenta? <a className="text-primary font-bold hover:underline" href="/registro">Únete a la academia</a>
                     </p>
                 </div>
 
