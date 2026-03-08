@@ -3,6 +3,7 @@ import { Clase, Contenido } from '../../types';
 
 interface ClassAccordionItemProps {
     clase: Clase;
+    displayIndex?: number;
     isSelected?: boolean;
     isEditable?: boolean;
     onSelect?: () => void;
@@ -109,6 +110,7 @@ const renderContenido = (item: Contenido, index: number, isEditable?: boolean, o
 
 export const ClassAccordionItem: React.FC<ClassAccordionItemProps> = ({
     clase,
+    displayIndex,
     isSelected,
     isEditable = false,
     onSelect,
@@ -117,13 +119,15 @@ export const ClassAccordionItem: React.FC<ClassAccordionItemProps> = ({
     onDelete,
     onAddContent
 }) => {
+    const classNumber = displayIndex !== undefined ? displayIndex : (typeof clase.id === 'number' ? clase.id : '?');
+
     if (!clase.isAvailable && !isEditable) {
         return (
             <details className="group bg-white border-2 border-pastel-lavender rounded-full overflow-hidden hover:border-primary/40 transition-colors">
                 <summary className="flex items-center justify-between p-6 cursor-pointer list-none [&::-webkit-details-marker]:hidden">
                     <div className="flex items-center gap-4">
-                        <span className="size-10 rounded-full bg-pastel-lavender text-primary flex items-center justify-center font-bold">{clase.id}</span>
-                        <h3 className="text-xl font-bold text-slate-800">Clase {clase.id}: {clase.title}</h3>
+                        <span className="size-10 rounded-full bg-pastel-lavender text-primary flex items-center justify-center font-bold px-1">{classNumber}</span>
+                        <h3 className="text-xl font-bold text-slate-800">Clase {classNumber}: {clase.title}</h3>
                     </div>
                     <span className="material-symbols-outlined transition-transform group-open:rotate-180 text-primary/40">expand_more</span>
                 </summary>
@@ -145,11 +149,11 @@ export const ClassAccordionItem: React.FC<ClassAccordionItemProps> = ({
         >
             <summary className={`flex items-center justify-between p-6 cursor-pointer list-none [&::-webkit-details-marker]:hidden relative ${isEditable ? 'pr-20' : ''}`}>
                 <div className="flex items-center gap-4">
-                    <span className={`size-10 rounded-full ${isSelected ? 'bg-primary text-white' : 'bg-pastel-lavender text-primary'} flex items-center justify-center font-bold transition-colors`}>
-                        {clase.id}
+                    <span className={`size-10 rounded-full ${isSelected ? 'bg-primary text-white' : 'bg-pastel-lavender text-primary'} flex items-center justify-center font-bold px-1 transition-colors`}>
+                        {classNumber}
                     </span>
                     <h3 className="text-xl font-bold text-slate-800 flex items-center gap-2">
-                        Clase {clase.id}: {clase.title}
+                        Clase {classNumber}: {clase.title}
                         {isEditable && !clase.isAvailable && (
                             <span className="text-[10px] bg-slate-200 text-slate-500 px-2 py-1 rounded-full uppercase tracking-wider">Borrador</span>
                         )}

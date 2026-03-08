@@ -49,16 +49,22 @@ export async function getTeacherCourses() {
     const { data, error } = await supabase
         .from('cursos')
         .select(`
-            *,
-            estudiantes:familiares(count)
+            id,
+            titulo,
+            descripcion,
+            imagen_url,
+            creado_en,
+            estudiantes:inscripciones(count)
         `)
         .eq('profesor_id', user.id)
         .order('creado_en', { ascending: false })
 
     if (error) {
-        console.error('Error fetching courses:', error)
+        console.error('AUDITORÍA DB - Error fetching courses:', error)
         return []
     }
+
+    console.log(`AUDITORÍA DB - Cursos encontrados para ${user.email}:`, data?.length)
 
     return data.map(course => ({
         id: course.id,

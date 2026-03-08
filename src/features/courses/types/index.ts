@@ -7,7 +7,7 @@ export interface Contenido {
 }
 
 export interface Clase {
-    id: number;
+    id: string | number;
     title: string;
     isOpen: boolean;
     isAvailable: boolean;

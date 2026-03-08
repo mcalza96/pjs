@@ -3,9 +3,9 @@
 import React from 'react';
 import { useRouter } from 'next/navigation';
 import { WelcomeBanner } from '@/features/dashboard/components/ui/WelcomeBanner';
-import { QuickActionButton } from '@/features/dashboard/components/ui/QuickActionButton';
+import { ActionButton } from '@/components/ui/ActionButton';
 import { MessagesCard } from '@/features/dashboard/components/ui/MessagesCard';
-import { CircularProgressCard } from '@/features/dashboard/components/ui/CircularProgressCard';
+import { CircularProgressCard } from '@/components/ui/CircularProgressCard';
 
 export const TeacherDashboardContainer = () => {
     const router = useRouter();
@@ -25,7 +25,7 @@ export const TeacherDashboardContainer = () => {
                 <div className="flex flex-col xl:flex-row gap-6 flex-1">
                     <div className="flex-1 flex flex-col gap-6">
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                            <QuickActionButton
+                            <ActionButton
                                 icon="video_chat"
                                 title="Entrar a clase"
                                 containerClassName="bg-pastel-pink hover:bg-pink-200 transition-colors dark:bg-pink-900/30"
@@ -34,7 +34,7 @@ export const TeacherDashboardContainer = () => {
                                 titleClassName="text-pink-600 dark:text-pink-300"
                                 onClick={() => router.push('/profesor/clases')}
                             />
-                            <QuickActionButton
+                            <ActionButton
                                 icon="play_circle"
                                 title="Entrar Curso"
                                 containerClassName="bg-pastel-lavender hover:bg-indigo-100 transition-colors dark:bg-indigo-900/30"
@@ -43,7 +43,7 @@ export const TeacherDashboardContainer = () => {
                                 titleClassName="text-primary dark:text-indigo-200"
                                 onClick={() => router.push('/profesor/curso')}
                             />
-                            <QuickActionButton
+                            <ActionButton
                                 icon="group"
                                 title="Mis Estudiantes"
                                 containerClassName="bg-blue-50 hover:bg-blue-100 transition-colors dark:bg-blue-900/30"

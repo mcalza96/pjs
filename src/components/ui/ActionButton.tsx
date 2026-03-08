@@ -1,6 +1,6 @@
 import React from 'react';
 
-interface QuickActionButtonProps {
+interface ActionButtonProps {
     icon: string;
     title: string;
     containerClassName: string;
@@ -10,7 +10,7 @@ interface QuickActionButtonProps {
     onClick?: () => void;
 }
 
-export const QuickActionButton: React.FC<QuickActionButtonProps> = ({
+export const ActionButton: React.FC<ActionButtonProps> = ({
     icon,
     title,
     containerClassName,

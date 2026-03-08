@@ -3,9 +3,9 @@
 import React from 'react';
 import { useRouter } from 'next/navigation';
 import { WelcomeBanner } from './ui/WelcomeBanner';
-import { QuickActionButton } from './ui/QuickActionButton';
+import { ActionButton } from '@/components/ui/ActionButton';
 import { MessagesCard } from './ui/MessagesCard';
-import { CircularProgressCard } from './ui/CircularProgressCard';
+import { CircularProgressCard } from '@/components/ui/CircularProgressCard';
 import { DailyPracticeWidget } from './ui/DailyPracticeWidget';
 
 export const StudentDashboardContainer = () => {
